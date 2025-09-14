@@ -1,12 +1,16 @@
 # Airbnb Project
 
-🔗 **Live Demo:** [Click Here](https://deployed-url.com)
+🔗 **Live Demo:** [Click Here](https://illustrious-custard-d38780.netlify.app/)
 
 ## 📌 Overview
-This project is a clone/implementation inspired by **Airbnb**, designed to showcase modern web development practices.  
-It includes features of Home page of Airbnb like category based hotel room view, searching/filtering, language selection etc.
+This project is a clone implementation inspired by **Airbnb**, designed to showcase modern web development practices.  
+It includes features of the Airbnb home page such as **category-based hotel room view**, **searching & filtering**, and **language selection**.  
 
-The goal of the project was to deepen understanding of **full-stack development**, including front-end, back-end, and database integration.
+The goal of the project was to deepen understanding of **full-stack development**, covering both **frontend** and **backend** systems.  
+- The **frontend** is built with Next.js (React) for a modern, responsive UI.  
+- The **backend** (found in a separate repository) powers the application with REST APIs for hotel room data, search queries, authentication, and booking management.  
+
+👉 You can find the backend implementation here: [Airbnb Clone Backend Repository](https://github.com/Efter-26/Airbnb_Clone_backend)  
 
 ---
 
