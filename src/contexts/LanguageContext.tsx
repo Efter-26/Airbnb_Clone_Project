@@ -12,10 +12,10 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translation data
+
 const translations = {
   en: {
-    // Navigation
+   
     'nav.homes': 'Homes',
     'nav.experiences': 'Experiences',
     'nav.services': 'Services',
@@ -28,7 +28,6 @@ const translations = {
     'nav.signup': 'Sign up',
     'nav.login': 'Log in',
     
-    // Search Bar
     'search.where': 'Where',
     'search.destinations': 'Search destinations',
     'search.checkin': 'Check in',
@@ -41,7 +40,6 @@ const translations = {
     'search.anytime': 'Anytime',
     'search.addGuestsShort': 'Add guests',
     
-    // Date Modal
     'date.whenTrip': 'When\'s your trip?',
     'date.dates': 'Dates',
     'date.months': 'Months',
@@ -58,7 +56,6 @@ const translations = {
     'date.clear': 'Clear',
     'date.save': 'Save',
     
-    // Guest Modal
     'guest.adults': 'Adults',
     'guest.children': 'Children',
     'guest.infants': 'Infants',
@@ -69,7 +66,6 @@ const translations = {
     'guest.bringingPets': 'Bringing a service animal?',
     'guest.apply': 'Apply',
     
-    // Footer
     'footer.support': 'Support',
     'footer.helpCenter': 'Help Center',
     'footer.airCover': 'AirCover',
@@ -105,7 +101,6 @@ const translations = {
     'footer.caribbean': 'Caribbean',
     'footer.copyright': '© 2024 Airbnb, Inc. · Privacy · Terms · Sitemap',
     
-    // Footer content translations
     'footer.safetyIssue': 'Get help with a safety issue',
     'footer.airbnbExperience': 'Airbnb your experience',
     'footer.airbnbService': 'Airbnb your service',
@@ -140,7 +135,6 @@ const translations = {
     'footer.businessTravelReady': 'Business travel ready',
     'footer.workspaceAmenities': 'Apartments with workspace amenities',
     
-    // Search Results
     'searchResults.homesIn': 'homes in',
     'searchResults.noProperties': 'No properties found',
     'searchResults.tryAdjusting': 'Try adjusting your search criteria',
@@ -148,7 +142,6 @@ const translations = {
     'searchResults.searchError': 'Search Error',
     'searchResults.searchingProperties': 'Searching properties...',
     
-    // Room Details
     'room.guests': 'guests',
     'room.bedrooms': 'bedrooms',
     'room.bathrooms': 'bathrooms',
@@ -174,7 +167,7 @@ const translations = {
     'room.total': 'Total',
   },
   bn: {
-    // Navigation
+    
     'nav.homes': 'বাড়ি',
     'nav.experiences': 'অভিজ্ঞতা',
     'nav.services': 'সেবা',
@@ -187,7 +180,7 @@ const translations = {
     'nav.signup': 'সাইন আপ',
     'nav.login': 'লগ ইন',
     
-    // Search Bar
+    
     'search.where': 'কোথায়',
     'search.destinations': 'গন্তব্য খুঁজুন',
     'search.checkin': 'চেক ইন',
@@ -200,7 +193,6 @@ const translations = {
     'search.anytime': 'যেকোনো সময়',
     'search.addGuestsShort': 'অতিথি যোগ করুন',
     
-    // Date Modal
     'date.whenTrip': 'আপনার ট্রিপ কখন?',
     'date.dates': 'তারিখ',
     'date.months': 'মাস',
@@ -217,7 +209,6 @@ const translations = {
     'date.clear': 'মুছুন',
     'date.save': 'সংরক্ষণ',
     
-    // Guest Modal
     'guest.adults': 'প্রাপ্তবয়স্ক',
     'guest.children': 'শিশু',
     'guest.infants': 'শিশু',
@@ -228,7 +219,6 @@ const translations = {
     'guest.bringingPets': 'সেবা প্রাণী আনছেন?',
     'guest.apply': 'প্রয়োগ',
     
-    // Footer
     'footer.support': 'সহায়তা',
     'footer.helpCenter': 'সহায়তা কেন্দ্র',
     'footer.airCover': 'এয়ার কভার',
@@ -264,7 +254,6 @@ const translations = {
     'footer.caribbean': 'ক্যারিবিয়ান',
     'footer.copyright': '© ২০২৪ এয়ারবিএনবি, ইনক. · গোপনীয়তা · শর্তাবলী · সাইটম্যাপ',
     
-    // Footer content translations
     'footer.safetyIssue': 'নিরাপত্তা সমস্যার জন্য সাহায্য পান',
     'footer.airbnbExperience': 'আপনার অভিজ্ঞতা এয়ারবিএনবি করুন',
     'footer.airbnbService': 'আপনার সেবা এয়ারবিএনবি করুন',
@@ -299,7 +288,6 @@ const translations = {
     'footer.businessTravelReady': 'ব্যবসায়িক ভ্রমণের জন্য প্রস্তুত',
     'footer.workspaceAmenities': 'কর্মক্ষেত্রের সুবিধা সহ অ্যাপার্টমেন্ট',
     
-    // Search Results
     'searchResults.homesIn': 'বাড়ি',
     'searchResults.noProperties': 'কোন সম্পত্তি পাওয়া যায়নি',
     'searchResults.tryAdjusting': 'আপনার অনুসন্ধানের মানদণ্ড সামঞ্জস্য করুন',
@@ -307,7 +295,6 @@ const translations = {
     'searchResults.searchError': 'অনুসন্ধান ত্রুটি',
     'searchResults.searchingProperties': 'সম্পত্তি খুঁজছি...',
     
-    // Room Details
     'room.guests': 'অতিথি',
     'room.bedrooms': 'বেডরুম',
     'room.bathrooms': 'বাথরুম',
@@ -337,7 +324,6 @@ const translations = {
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
-  // Load language from localStorage on mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem('airbnb-language') as Language;
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'bn')) {
@@ -345,13 +331,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save language to localStorage when changed
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
     localStorage.setItem('airbnb-language', lang);
   };
 
-  // Translation function
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations[typeof language]] || key;
   };

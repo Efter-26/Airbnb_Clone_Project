@@ -1,4 +1,3 @@
-// src/components/BecomeHostModal.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -55,7 +54,6 @@ export default function BecomeHostModal({ isOpen, onClose }: BecomeHostModalProp
         className="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors"
@@ -65,12 +63,10 @@ export default function BecomeHostModal({ isOpen, onClose }: BecomeHostModalProp
           </svg>
         </button>
 
-        {/* Title */}
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
           What would you like to host?
         </h2>
 
-        {/* Options */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Home Option */}
           <div className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-xl hover:border-gray-300 transition-colors cursor-pointer">
@@ -84,7 +80,6 @@ export default function BecomeHostModal({ isOpen, onClose }: BecomeHostModalProp
             <span className="text-lg font-medium text-gray-900">Home</span>
           </div>
 
-          {/* Experience Option */}
           <div className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-xl hover:border-gray-300 transition-colors cursor-pointer">
             <div className="w-20 h-20 mb-4 flex items-center justify-center">
               <img 
@@ -96,7 +91,6 @@ export default function BecomeHostModal({ isOpen, onClose }: BecomeHostModalProp
             <span className="text-lg font-medium text-gray-900">Experience</span>
           </div>
 
-          {/* Service Option */}
           <div className="flex flex-col items-center p-6 border-2 border-gray-200 rounded-xl hover:border-gray-300 transition-colors cursor-pointer">
             <div className="w-20 h-20 mb-4 flex items-center justify-center">
               <img 
@@ -109,7 +103,6 @@ export default function BecomeHostModal({ isOpen, onClose }: BecomeHostModalProp
           </div>
         </div>
 
-        {/* Next Button */}
         <div className="flex justify-end">
           <button 
             className="px-6 py-3 bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"

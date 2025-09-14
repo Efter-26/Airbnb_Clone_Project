@@ -1,4 +1,3 @@
-// src/app/rooms/[id]/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -78,14 +77,11 @@ export default function RoomDetailsPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
 
-  // Get room data with fallback
   const roomData = room?.data;
   
-  // Get images array with fallback
   const images = roomData?.images || [];
   const hasImages = images.length > 0;
   
-  // Fallback values for optional properties
   const amenities = roomData?.amenities || [];
   const host = roomData?.host || {
     name: "Host",
@@ -153,12 +149,9 @@ export default function RoomDetailsPage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2">
-            {/* Image Gallery */}
             <div className="mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 rounded-2xl overflow-hidden">
-                {/* Main Image */}
                 <div className="md:col-span-2 relative h-96">
                   {hasImages ? (
                     <Image
@@ -197,7 +190,6 @@ export default function RoomDetailsPage() {
                   </button>
                 </div>
                 
-                {/* Thumbnail Images */}
                 {hasImages && images.slice(1, 5).map((image, index) => (
                   <div key={index} className="relative h-48">
                     <Image
@@ -212,7 +204,6 @@ export default function RoomDetailsPage() {
               </div>
             </div>
 
-            {/* Property Info */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">{roomData?.title || 'Room'}</h1>
               <p className="text-gray-600 mb-4">
@@ -229,7 +220,6 @@ export default function RoomDetailsPage() {
               </div>
             </div>
 
-            {/* Guest Favorite Section */}
             {isGuestFavorite && (
               <div className="bg-gray-50 rounded-2xl p-6 mb-8">
                 <div className="flex items-center gap-4">
@@ -253,7 +243,6 @@ export default function RoomDetailsPage() {
               </div>
             )}
 
-            {/* Host Section */}
             <div className="border-t pt-8 mb-8">
               <div className="flex items-start gap-4">
                 <div className="relative">
@@ -288,7 +277,6 @@ export default function RoomDetailsPage() {
               </div>
             </div>
 
-            {/* Highlights */}
             {highlights.length > 0 && (
               <div className="border-t pt-8 mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">What guests love</h2>
@@ -310,7 +298,6 @@ export default function RoomDetailsPage() {
               </div>
             )}
 
-            {/* Amenities */}
             <div className="border-t pt-8 mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">What this place offers</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -330,7 +317,6 @@ export default function RoomDetailsPage() {
               </button>
             </div>
 
-            {/* Things to Know */}
             <div className="border-t pt-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Things to know</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -367,7 +353,6 @@ export default function RoomDetailsPage() {
             </div>
           </div>
 
-          {/* Booking Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
@@ -425,7 +410,6 @@ export default function RoomDetailsPage() {
         </div>
       </div>
 
-      {/* Image Modal */}
       {showAllImages && hasImages && (
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
           <div className="relative max-w-4xl max-h-full p-4">
@@ -447,8 +431,6 @@ export default function RoomDetailsPage() {
           </div>
         </div>
       )}
-
-      {/* Footer Section */}
     </div>
   );
 }

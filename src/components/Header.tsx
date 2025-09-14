@@ -1,4 +1,4 @@
-// src/components/Header.tsx
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -29,14 +29,12 @@ export default function Header() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
-  // Check if we're on a room details page or search results page (client-side only)
   useEffect(() => {
     setIsClient(true);
     setIsRoomDetailsPage(pathname?.startsWith('/rooms/') || false);
     setIsSearchResultsPage(pathname === '/search');
   }, [pathname]);
 
-  // Update button position when dropdown opens
   useEffect(() => {
     if (dropdownOpen && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
@@ -47,7 +45,6 @@ export default function Header() {
     }
   }, [dropdownOpen]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -67,7 +64,6 @@ export default function Header() {
     };
   }, [dropdownOpen]);
   
-  // Scrolled search bar states
   const [destination, setDestination] = useState('');
   const [guests, setGuests] = useState({ adults: 1, children: 0, infants: 0, pets: 0 });
   const [checkIn, setCheckIn] = useState<Date | null>(null);
@@ -83,12 +79,10 @@ export default function Header() {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 100);
       
-      // Bottom navigation scroll behavior
       if (scrollTop > lastScrollY && scrollTop > 50) {
-        // Scrolling down - hide bottom nav
         setShowBottomNav(false);
       } else if (scrollTop < lastScrollY) {
-        // Scrolling up - show bottom nav
+       
         setShowBottomNav(true);
       }
       
@@ -99,7 +93,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Click outside to close scrolled modal
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -111,7 +104,6 @@ export default function Header() {
     };
 
     if (showFullHeader) {
-      // Add a small delay to prevent immediate closing when clicking the search bar
       const timeoutId = setTimeout(() => {
         document.addEventListener('mousedown', handleClickOutside);
       }, 100);
@@ -130,9 +122,7 @@ export default function Header() {
           ? 'fixed top-0 shadow-lg' 
           : 'relative'
       }`}>
-        {/* Mobile Header - Search bar + tabs */}
         <div className="md:hidden px-4 py-3">
-          {/* Search Bar */}
           <div 
             className="bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer mb-4"
             onClick={() => {
@@ -182,7 +172,6 @@ export default function Header() {
             </div>
           </div>
           
-          {/* Center Tabs */}
           <div className="flex justify-center space-x-8">
             <button className="flex flex-col items-center">
               <div className="w-8 h-8 mb-1 flex items-center justify-center">
@@ -217,10 +206,8 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Desktop Header */}
         <div className="hidden md:block">
           {showFullHeader ? (
-            /* Full header with navbar and search bar */
             <div className="p-4" ref={scrolledModalRef}>
               <Navbar onOpenModal={() => setUnifiedModalOpen(true)} />
               <div className="mx-auto max-w-5xl px-4 md:px-6 lg:px-0">
@@ -228,17 +215,15 @@ export default function Header() {
               </div>
             </div>
           ) : (isScrolled || (isClient && (isRoomDetailsPage || isSearchResultsPage))) ? (
-            /* 3-column search bar for scrolled state or room details page */
+            
             <div className="w-full px-4 py-3">
               <div className="flex items-center justify-between max-w-7xl mx-auto">
-                {/* Left: Logo */}
                 <div className="flex items-center">
                   <Link href="/" className="flex items-center">
                     <AirbnbLogo className="h-8 w-auto" />
                   </Link>
                 </div>
 
-                {/* Center: Simplified 3-Column Search Bar */}
                 <div className="flex justify-center">
                   <div 
                     className="bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer w-auto"
@@ -248,7 +233,7 @@ export default function Header() {
                     }}
                   >
                     <div className="flex items-center">
-                      {/* Anywhere Column */}
+                    
                       <div className="px-4 py-3 text-left hover:bg-gray-50 rounded-l-full transition-colors flex items-center gap-2">
                         <img 
                           src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-search-bar-icons/original/4aae4ed7-5939-4e76-b100-e69440ebeae4.png?im_w=240"
@@ -260,19 +245,16 @@ export default function Header() {
                       
                       <div className="w-px h-6 bg-gray-300"></div>
                       
-                      {/* Anytime Column */}
                       <div className="px-4 py-3 text-left hover:bg-gray-50 transition-colors">
                         <span className="text-sm font-medium text-gray-900">{t('search.anytime')}</span>
                       </div>
                       
                       <div className="w-px h-6 bg-gray-300"></div>
                       
-                      {/* Add guests Column */}
                       <div className="px-4 py-3 text-left hover:bg-gray-50 rounded-r-full transition-colors">
                         <span className="text-sm font-medium text-gray-900">{t('search.addGuests')}</span>
                       </div>
                       
-                      {/* Search Button */}
                       <div className="m-1 p-2 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -282,7 +264,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Right: Actions */}
                 <div className="flex items-center gap-3">
                   <button 
                     onClick={() => setBecomeHostModalOpen(true)}
@@ -318,7 +299,7 @@ export default function Header() {
               </div>
             </div>
           ) : (
-            /* Normal state: Full header with navbar and search bar */
+    
             <div className="p-4">
               <Navbar onOpenModal={() => setUnifiedModalOpen(true)} />
       <div className="mx-auto max-w-5xl px-4 md:px-6 lg:px-0">
@@ -329,7 +310,6 @@ export default function Header() {
       </div>
     </header>
 
-      {/* Dropdown Menu for Scrolled Header */}
       {dropdownOpen && createPortal(
         <div
           ref={dropdownRef}
@@ -339,7 +319,7 @@ export default function Header() {
             right: `${buttonPosition.right}px`
           }}
         >
-          {/* Help Center */}
+          
           <Link
             href="/help"
             className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -352,7 +332,6 @@ export default function Header() {
             <span className="font-medium">{t('nav.helpCenter')}</span>
           </Link>
 
-          {/* Become a host */}
           <button
             onClick={() => setBecomeHostModalOpen(true)}
             className="flex items-center justify-between px-4 py-4 hover:bg-gray-50 text-gray-950 border-b border-gray-200 w-full text-left"
@@ -372,7 +351,6 @@ export default function Header() {
             </div>
           </button>
 
-          {/* Refer a Host */}
           <Link
             href="/refer"
             className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -380,7 +358,7 @@ export default function Header() {
             {t('nav.referHost')}
           </Link>
 
-          {/* Find a co-host */}
+          
           <Link
             href="/cohost"
             className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -388,7 +366,6 @@ export default function Header() {
             {t('nav.findCohost')}
           </Link>
 
-          {/* Gift cards */}
           <Link
             href="/gift-cards"
             className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -396,7 +373,6 @@ export default function Header() {
             {t('nav.giftCards')}
           </Link>
 
-          {/* Log in or sign up */}
           <Link
             href="/login"
             className="block px-4 py-3 hover:bg-gray-50 text-gray-950"
@@ -407,7 +383,6 @@ export default function Header() {
         document.body
       )}
 
-      {/* Mobile Bottom Navigation */}
       <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 transition-transform duration-300 ${
         showBottomNav ? 'translate-y-0' : 'translate-y-full'
       }`}>
@@ -433,11 +408,9 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Search Modal */}
       {showMobileModal && (
         <div className="md:hidden fixed inset-0 bg-black/50 z-50">
           <div className="bg-white h-full flex flex-col">
-            {/* Header with Navbar Tabs */}
             <div className="p-4 border-b">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex space-x-6">
@@ -460,14 +433,12 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Modal Content */}
             <div className="flex-1 overflow-hidden">
               {mobileActiveSection === 'where' && (
                 <div className="p-4 h-full">
                   <h2 className="text-2xl font-bold text-gray-900 mb-4">Where?</h2>
                   <div className="text-gray-500 mb-6">Search destinations</div>
                   
-                  {/* Search Input */}
                   <div className="mb-6">
                     <input
                       type="text"
@@ -478,7 +449,6 @@ export default function Header() {
                     />
                   </div>
 
-                  {/* Recent Searches */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Recent searches</h3>
                     <div className="space-y-2">
@@ -499,7 +469,7 @@ export default function Header() {
                     </div>
                   </div>
 
-                  {/* Suggested Destinations */}
+                  
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Suggested destinations</h3>
                     <div className="space-y-2">
@@ -539,7 +509,6 @@ export default function Header() {
                   <h2 className="text-2xl font-bold text-gray-900 mb-4">When?</h2>
                   <div className="text-gray-500 mb-6">{t('search.addDates')}</div>
                   
-                  {/* Mobile Date Range Modal */}
                   <div className="h-full overflow-hidden">
                     <DateRangeModal
                       open={true}
@@ -560,7 +529,6 @@ export default function Header() {
                     />
                   </div>
                   
-                  {/* Done Button for Date Selection */}
                   <div className="p-4 border-t bg-white">
                     <button
                       onClick={() => {
@@ -581,7 +549,7 @@ export default function Header() {
                   <div className="text-gray-500 mb-6">{t('search.addGuests')}</div>
                   
                   <div className="space-y-6">
-                    {/* Adults */}
+                   
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-lg font-medium text-gray-900">Adults</div>
@@ -608,7 +576,6 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Children */}
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-lg font-medium text-gray-900">Children</div>
@@ -635,7 +602,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Infants */}
+                   
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-lg font-medium text-gray-900">Infants</div>
@@ -662,7 +629,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Pets */}
+                    
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-lg font-medium text-gray-900">Pets</div>
@@ -690,7 +657,7 @@ export default function Header() {
                     </div>
                   </div>
                   
-                  {/* Done Button for Guest Selection */}
+                 
                   <div className="p-4 border-t bg-white">
                     <button
                       onClick={() => {
@@ -706,7 +673,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* Section Navigation */}
+           
             <div className="border-t p-4">
               <div className="flex items-center justify-between">
                 <button 
@@ -736,7 +703,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Bottom Actions */}
             <div className="border-t p-4">
               <div className="flex items-center justify-between">
                 <button 
@@ -768,7 +734,6 @@ export default function Header() {
         </div>
       )}
 
-      {/* Become Host Modal */}
       <BecomeHostModal
         isOpen={becomeHostModalOpen}
         onClose={() => setBecomeHostModalOpen(false)}

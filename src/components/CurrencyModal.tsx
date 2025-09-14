@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Currency {
   code: string;
@@ -32,7 +32,6 @@ interface CurrencyModalProps {
 export default function CurrencyModal({ open, onClose, onSelectCurrency, selectedCurrency }: CurrencyModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -42,7 +41,6 @@ export default function CurrencyModal({ open, onClose, onSelectCurrency, selecte
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
-      // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
     }
 
@@ -56,15 +54,12 @@ export default function CurrencyModal({ open, onClose, onSelectCurrency, selecte
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Dim backdrop */}
       <div className="absolute inset-0 bg-black/50" onClick={onClose}></div>
       
-      {/* Modal */}
       <div 
         ref={modalRef}
         className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 w-full max-w-4xl mx-4 max-h-[80vh] overflow-hidden"
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Choose a currency</h2>
           <button
@@ -77,7 +72,6 @@ export default function CurrencyModal({ open, onClose, onSelectCurrency, selecte
           </button>
         </div>
 
-        {/* Currency Grid */}
         <div className="p-6">
           <div className="grid grid-cols-5 gap-3 max-h-96 overflow-y-auto">
             {currencies.map((currency) => (

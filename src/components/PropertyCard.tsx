@@ -1,4 +1,3 @@
-// src/components/PropertyCard.tsx
 "use client";
 
 import Image from "next/image";
@@ -33,7 +32,6 @@ export default function PropertyCard({
       className="relative flex-shrink-0 w-51 group cursor-pointer"
       onClick={handleCardClick}
     >
-      {/* Image Container */}
       <div className="relative w-full h-50 rounded-xl overflow-hidden">
         <Image
           src={image}
@@ -42,7 +40,6 @@ export default function PropertyCard({
           className="object-cover"
         />
         
-        {/* Guest Favorite Badge */}
         {isGuestFavorite && (
           <div className="absolute top-3 left-3">
             <span className="bg-white px-2 py-1 rounded-full text-xs font-medium text-gray-800 shadow-sm">
@@ -51,7 +48,6 @@ export default function PropertyCard({
           </div>
         )}
         
-        {/* Heart Icon */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -75,7 +71,6 @@ export default function PropertyCard({
         </button>
       </div>
       
-      {/* Content */}
       <div className="mt-1">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 text-xs truncate">{title}</h3>

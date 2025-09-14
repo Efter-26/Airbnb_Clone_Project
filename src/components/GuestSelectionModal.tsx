@@ -1,4 +1,4 @@
-// src/components/GuestSelectionModal.tsx
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -35,7 +35,6 @@ export default function GuestSelectionModal({
     onGuestsChange(newGuests);
   };
 
-  // Close modal when clicking outside
   useEffect(() => {
     if (!open) return;
     const handleClickOutside = (event: MouseEvent) => {
@@ -53,7 +52,7 @@ export default function GuestSelectionModal({
     <div className="absolute left-0 right-0 top-full mt-2 z-50">
       <div ref={modalRef} className="bg-white rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)] border border-gray-200 overflow-hidden">
         <div className="p-6">
-          {/* Adults */}
+         
           <div className="flex items-center justify-between py-4 border-b border-gray-200">
             <div>
               <div className="font-semibold text-gray-900">Adults</div>
@@ -81,7 +80,6 @@ export default function GuestSelectionModal({
             </div>
           </div>
 
-          {/* Children */}
           <div className="flex items-center justify-between py-4 border-b border-gray-200">
             <div>
               <div className="font-semibold text-gray-900">Children</div>
@@ -109,7 +107,6 @@ export default function GuestSelectionModal({
             </div>
           </div>
 
-          {/* Infants */}
           <div className="flex items-center justify-between py-4 border-b border-gray-200">
             <div>
               <div className="font-semibold text-gray-900">Infants</div>
@@ -137,7 +134,6 @@ export default function GuestSelectionModal({
             </div>
           </div>
 
-          {/* Pets */}
           <div className="flex items-center justify-between py-4">
             <div>
               <div className="font-semibold text-gray-900">Pets</div>

@@ -1,4 +1,3 @@
-// src/components/HeroSection.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -120,7 +119,6 @@ export default function HeroSection() {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const scrollRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Fetch properties from backend
   useEffect(() => {
     const fetchProperties = async () => {
       try {
@@ -134,7 +132,6 @@ export default function HeroSection() {
         
         const data = apiResponse.data;
         
-        // Map all data to display format (no city filtering)
         const mappedData = data.map((item: BackendProperty) => ({
           id: item._id,
           title: item.title,
@@ -148,7 +145,6 @@ export default function HeroSection() {
           hotelName: item.hotelName || item.title
         }));
 
-        // Group by category
         const grouped = mappedData.reduce((acc, property) => {
           const category = property.category;
           if (!acc[category]) {
@@ -158,7 +154,7 @@ export default function HeroSection() {
           return acc;
         }, {} as { [key: string]: Property[] });
 
-        // Get top 5 categories with most properties
+        
         const sortedCategories = Object.entries(grouped)
           .sort(([,a], [,b]) => b.length - a.length)
           .slice(0, 5);
@@ -180,7 +176,7 @@ export default function HeroSection() {
     fetchProperties();
   }, []);
 
-  // Scroll functions
+ 
   const scrollLeft = (category: string) => {
     const container = scrollRefs.current[category];
     if (container) {
@@ -208,7 +204,7 @@ export default function HeroSection() {
   };
 
   const getCategoryTitle = (category: string) => {
-    // Use the actual category name from the data
+    
     return category;
   };
 
@@ -231,7 +227,7 @@ export default function HeroSection() {
     <div className="space-y-10">
       {Object.entries(groupedProperties).map(([category, categoryProperties]) => (
         <div key={category} className="relative">
-          {/* Section Header */}
+          
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-900">
               {getCategoryTitle(category)}
@@ -252,7 +248,6 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Properties Grid */}
           <div
             ref={el => { scrollRefs.current[category] = el; }}
             className="flex gap-3 overflow-x-auto scrollbar-hide pb-2"

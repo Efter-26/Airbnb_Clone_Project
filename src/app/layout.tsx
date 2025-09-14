@@ -1,9 +1,8 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css"; 
 import Header from "../components/Header";
-import FooterSection from "../components/FooterSection"; // <- import footer
+import FooterSection from "../components/FooterSection";
 import { ModalProvider } from "../contexts/ModalContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import ModalWrapper from "../components/ModalWrapper";
@@ -32,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="pt-0">
               {children}
             </main>
-            <FooterSection /> {/* <-- added footer here */}
+            <FooterSection />
             <ModalWrapper />
           </ModalProvider>
         </LanguageProvider>

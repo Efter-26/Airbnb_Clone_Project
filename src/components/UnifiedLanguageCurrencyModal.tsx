@@ -64,7 +64,7 @@ export default function UnifiedLanguageCurrencyModal({
   const [translationEnabled, setTranslationEnabled] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -87,7 +87,6 @@ export default function UnifiedLanguageCurrencyModal({
   
   if (!open) return null;
 
-  // Ensure we're on the client side
   if (typeof window === 'undefined') return null;
 
   return createPortal(
@@ -102,16 +101,15 @@ export default function UnifiedLanguageCurrencyModal({
         zIndex: 9999
       }}
     >
-      {/* Dim backdrop */}
+      
       <div className="absolute inset-0 bg-black/50" onClick={onClose}></div>
       
-      {/* Modal - Centered overlay */}
       <div 
         ref={modalRef}
         className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 w-full max-w-4xl max-h-[80vh] overflow-hidden z-10"
         style={{ position: 'relative', zIndex: 10000 }}
       >
-        {/* Header with Tabs */}
+       
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -126,7 +124,6 @@ export default function UnifiedLanguageCurrencyModal({
             </button>
           </div>
 
-          {/* Tab Navigation */}
           <div className="flex space-x-8 border-b border-gray-300">
             <button
               onClick={() => setActiveTab('language')}
@@ -157,7 +154,6 @@ export default function UnifiedLanguageCurrencyModal({
           </div>
         </div>
 
-        {/* Translation Toggle - Only show for language tab */}
         {activeTab === 'language' && (
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
@@ -187,7 +183,7 @@ export default function UnifiedLanguageCurrencyModal({
           </div>
         )}
 
-        {/* Content Area */}
+       
         <div className="p-6">
           {activeTab === 'language' && (
             <>

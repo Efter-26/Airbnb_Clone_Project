@@ -1,4 +1,4 @@
-// src/components/NavTab.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -7,9 +7,9 @@ import { useEffect, useRef } from "react";
 export default function NavTab({
   href,
   label,
-  icon, // optional fallback if you don't pass media
-  videoSrc, // animation for the active tab
-  posterInactive, // static image shown when NOT active
+  icon, 
+  videoSrc, 
+  posterInactive,
   badge,
   active,
   onSelect,
@@ -36,7 +36,6 @@ export default function NavTab({
           v.addEventListener("loadedmetadata", h, { once: true });
         });
 
-  // Active: play forward once and hold on last frame; Inactive: reset to 0
   useEffect(() => {
     const v = videoRef.current;
     if (!videoSrc || !v) return;
@@ -65,7 +64,6 @@ export default function NavTab({
 
     if (active) playForwardOnce();
     else resetToStart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, videoSrc]);
 
   return (
@@ -73,24 +71,20 @@ export default function NavTab({
       href={href}
       aria-current={active ? "page" : undefined}
       onClick={(e) => {
-        e.preventDefault(); // act like a mode switch, not navigation
+        e.preventDefault();
         onSelect?.();
       }}
       className="group relative inline-flex"
     >
-      {/* underline fixed at the bottom; only visible when active */}
       <span
         className={`pointer-events-none absolute left-0 right-0 bottom-0 h-[3px] rounded-full transition-colors ${
           active ? "bg-black" : "bg-transparent"
         }`}
       />
 
-      {/* content row (icon + label). pb-1 keeps underline tight */}
       <div className="flex items-center gap-0 pb-1">
-        {/* icon box: bigger footprint; media inside centered */}
         <span className="relative inline-block w-20 h-16">
           {active && videoSrc ? (
-            // ACTIVE → big video, plays once, holds end frame
             <video
               key={`${active}-${videoSrc}`}
               ref={videoRef}
@@ -109,7 +103,7 @@ export default function NavTab({
               />
             </video>
           ) : posterInactive ? (
-            // INACTIVE → larger static poster with subtle hover motion
+            
             <img
               src={posterInactive}
               alt=""
@@ -122,14 +116,13 @@ export default function NavTab({
               ].join(" ")}
             />
           ) : (
-            // fallback emoji/icon
+            
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl leading-none select-none">
               {icon}
             </span>
           )}
         </span>
 
-        {/* label: bold only when active */}
         <span
           className={`text-[15px] leading-tight ${
             active ? "font-semibold text-gray-900" : "font-normal text-gray-800"

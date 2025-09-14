@@ -1,4 +1,3 @@
-// src/components/DestinationModal.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -101,7 +100,6 @@ export default function DestinationModal({
     }
   }, [searchQuery]);
 
-  // Close modal when clicking outside
   useEffect(() => {
     if (!open) return;
     const handleClickOutside = (event: MouseEvent) => {
@@ -129,7 +127,6 @@ export default function DestinationModal({
     <div className="absolute left-0 right-0 top-full mt-2 z-50">
       <div ref={modalRef} className="bg-white rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)] border border-gray-200 overflow-hidden">
         <div className="max-h-96 overflow-y-auto">
-          {/* Recent Searches */}
           {recentSearches.length > 0 && searchQuery.trim() === "" && (
             <div className="p-4 border-b border-gray-100">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Recent searches</h3>
@@ -151,7 +148,6 @@ export default function DestinationModal({
             </div>
           )}
 
-          {/* Suggested Destinations */}
           <div className="p-4">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">
               {searchQuery.trim() === "" ? "Suggested destinations" : "Search results"}

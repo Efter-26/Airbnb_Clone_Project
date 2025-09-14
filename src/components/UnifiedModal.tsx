@@ -1,4 +1,4 @@
-// src/components/UnifiedModal.tsx
+
 "use client";
 
 import DestinationModal from "./DestinationModal";
@@ -17,18 +17,15 @@ interface UnifiedModalProps {
   onClose: () => void;
   activeField: "where" | "checkin" | "checkout" | "who" | null;
   
-  // Destination props
   destination: string;
   onSelectDestination: (destination: string) => void;
   
-  // Date props
   checkIn: Date | null;
   checkOut: Date | null;
   onPick: (d: Date) => void;
   dateMode?: "dates" | "months" | "flexible";
   onDateModeChange?: (mode: "dates" | "months" | "flexible") => void;
   
-  // Guest props
   guests: GuestCounts;
   onApplyGuests: (guests: GuestCounts) => void;
 }
@@ -49,7 +46,7 @@ export default function UnifiedModal({
 }: UnifiedModalProps) {
   if (!open || !activeField) return null;
 
-  // For destination modal - positioned under Where field (left side)
+  
   if (activeField === "where") {
     return (
       <div className="absolute left-0 top-full mt-2 z-50" style={{ width: '50%' }}>
@@ -63,7 +60,7 @@ export default function UnifiedModal({
     );
   }
 
-  // For date modal - positioned under Check in/Check out fields (center)
+  
   if (activeField === "checkin" || activeField === "checkout") {
     return (
       <div className="absolute left-0 right-0 top-full mt-2 z-50">
@@ -81,7 +78,6 @@ export default function UnifiedModal({
     );
   }
 
-  // For guest modal - positioned under Who field (right side)
   if (activeField === "who") {
     return (
       <div className="absolute right-0 top-full mt-2 z-50" style={{ width: '50%' }}>

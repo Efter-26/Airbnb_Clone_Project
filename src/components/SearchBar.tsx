@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/components/SearchBar.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -22,7 +21,6 @@ export default function SearchBar() {
   const [isClient, setIsClient] = useState(false);
   const { t } = useLanguage();
 
-  // Fix hydration mismatch
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -84,7 +82,6 @@ export default function SearchBar() {
       return;
     }
 
-    // Build query parameters
     const params = new URLSearchParams();
     params.append('where', destination);
     
@@ -102,7 +99,6 @@ export default function SearchBar() {
     params.append('infants', guests.infants.toString());
     params.append('pets', guests.pets.toString());
 
-    // Navigate to search results page
     window.location.href = `/search?${params.toString()}`;
   };
 
@@ -181,7 +177,6 @@ export default function SearchBar() {
   };
 
 
-  // Prevent hydration mismatch by not rendering dynamic content on server
   if (!isClient) {
     return (
       <div className="relative py-4">
@@ -226,7 +221,6 @@ export default function SearchBar() {
     <div className="relative py-4">
       <div className="relative mx-auto max-w-4xl rounded-full border border-gray-300 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.12)] px-1">
         <div className="flex items-center h-[68px] px-1 overflow-visible">
-          {/* Where */}
           <Section
             grow="flex-[1.8]"
             onClick={() => openFor("where")}
@@ -276,10 +270,9 @@ export default function SearchBar() {
             <Divider />
           </Section>
 
-          {/* Date section - changes based on mode */}
           {dateMode === "dates" ? (
             <>
-              {/* Check in */}
+              
               <Section
                 grow="flex-[1]"
                 onClick={() => openFor("checkin")}
@@ -306,7 +299,6 @@ export default function SearchBar() {
                 <Divider />
               </Section>
 
-              {/* Check out */}
               <Section
                 grow="flex-[1]"
                 onClick={() => openFor("checkout")}
@@ -334,7 +326,7 @@ export default function SearchBar() {
               </Section>
             </>
           ) : (
-            /* Single When column for months/flexible */
+            
             <Section
               grow="flex-[2]"
               onClick={() => openFor("checkin")}
@@ -351,7 +343,7 @@ export default function SearchBar() {
             </Section>
           )}
 
-          {/* Who + Search */}
+          
           <Section
             grow="flex-[1.8]"
             onClick={() => openFor("who")}
@@ -424,8 +416,6 @@ export default function SearchBar() {
   );
 }
 
-/* building blocks */
-
 function Section({
   children,
   isLast,
@@ -441,7 +431,7 @@ function Section({
   role?: string;
   active?: boolean;
 }) {
-  // Static className generation to prevent hydration mismatch
+  
   let className = "group relative flex h-full px-3 py-1 overflow-hidden items-center";
   
   if (grow === "flex-1") {
@@ -475,7 +465,6 @@ function Section({
       role={role as any}
       className={className}
     >
-      {/* Hover/Active pill */}
       <span className={hoverClassName} />
       <div className="relative z-[2] flex w-full items-center justify-between">
         {children}

@@ -70,7 +70,6 @@ export default function FooterSection() {
   const languageModalRef = useRef<HTMLDivElement>(null);
   const currencyModalRef = useRef<HTMLDivElement>(null);
 
-  // Close modals when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -94,10 +93,8 @@ export default function FooterSection() {
   const handleLanguageSelect = (lang: Language) => {
     setSelectedLanguage(lang);
     setLanguageModalOpen(false);
-    // Map language codes to our context format
     const langCode = lang.code === "en-US" ? "en" : "bn";
     setLanguage(langCode);
-    // Reload page to apply language changes
     window.location.reload();
   };
 
@@ -108,15 +105,12 @@ export default function FooterSection() {
 
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
-      {/* Inspiration Section */}
       <div className="py-12 px-10">
         <div className="max-w-7xl mx-auto">
-          {/* Main Title */}
           <h2 className="text-2xl font-semibold text-gray-900 mb-8">
             {t("footer.inspiration")}
           </h2>
 
-          {/* Tab Navigation */}
           <div className="mb-8">
             <div className="flex space-x-8 border-b border-gray-300">
               <button
@@ -142,7 +136,6 @@ export default function FooterSection() {
             </div>
           </div>
 
-          {/* Content Grid */}
           {activeTab === "tips" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="space-y-6">
@@ -277,10 +270,8 @@ export default function FooterSection() {
         </div>
       </div>
 
-      {/* Main Footer Content */}
       <div className="py-10 px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Support Column */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">
               {t("footer.support")}
@@ -345,7 +336,6 @@ export default function FooterSection() {
             </ul>
           </div>
 
-          {/* Hosting Column */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">
               {t("footer.hosting")}
@@ -434,7 +424,6 @@ export default function FooterSection() {
             </ul>
           </div>
 
-          {/* Airbnb Column */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">
               {t("footer.airbnb")}
@@ -492,10 +481,8 @@ export default function FooterSection() {
           </div>
         </div>
 
-        {/* Bottom Section */}
         <div className="border-t border-gray-300 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            {/* Left Side - Copyright and Legal Links */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center gap-4 text-sm text-gray-600">
                 <span>{t("footer.copyright")}</span>
@@ -520,9 +507,7 @@ export default function FooterSection() {
               </div>
             </div>
 
-            {/* Right Side - Language, Currency, and Social Media */}
             <div className="flex items-center gap-4">
-              {/* Language Selector */}
               <div className="relative">
                 <button
                   onClick={() => setLanguageModalOpen(true)}
@@ -538,7 +523,6 @@ export default function FooterSection() {
                 </button>
               </div>
 
-              {/* Currency Selector */}
               <div className="relative">
                 <button
                   onClick={() => setCurrencyModalOpen(true)}
@@ -554,7 +538,6 @@ export default function FooterSection() {
                 </button>
               </div>
 
-              {/* Social Media Icons */}
               <div className="flex items-center gap-3">
                 <a href="#" className="hover:opacity-80 transition-opacity">
                   <img
@@ -586,7 +569,6 @@ export default function FooterSection() {
         </div>
       </div>
 
-      {/* Language Modal */}
       <LanguageModal
         open={languageModalOpen}
         onClose={() => setLanguageModalOpen(false)}
@@ -594,7 +576,6 @@ export default function FooterSection() {
         selectedLanguage={selectedLanguage}
       />
 
-      {/* Currency Modal */}
       <CurrencyModal
         open={currencyModalOpen}
         onClose={() => setCurrencyModalOpen(false)}

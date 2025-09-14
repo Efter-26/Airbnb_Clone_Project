@@ -1,8 +1,7 @@
-// src/components/Navbar.tsx
+
 "use client";
 
 import Link from "next/link";
-//import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import AirbnbLogo from "./AirbnbLogo";
@@ -14,7 +13,7 @@ import BecomeHostModal from "./BecomeHostModal";
 type TabKey = "homes" | "experiences" | "services";
 
 interface NavbarProps {
-  active?: TabKey; // default "homes"
+  active?: TabKey;
   onOpenModal?: () => void;
 }
 
@@ -27,15 +26,15 @@ export default function Navbar({ active = "homes" }: NavbarProps) {
   return (
     <header className="w-full bg-gray-100 backdrop-blur">
       <div className="w-full h-20 px-2 md:px-6 flex items-center justify-between">
-        {/* Row container */}
+       
         <div className="flex h-full items-center">
-          {/* LEFT: Logo */}
+          
           <Link href="/" className="flex items-center gap-2">
             <AirbnbLogo className="h-9 w-auto" />
             <span className="sr-only">Airbnb</span>
           </Link>
 
-          {/* RIGHT: actions (pinned to far right) */}
+          
           <div className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex items-center gap-3 md:gap-4">
              <button
                onClick={() => setBecomeHostModalOpen(true)}
@@ -50,7 +49,6 @@ export default function Navbar({ active = "homes" }: NavbarProps) {
             <MenuDropdown onOpenBecomeHost={() => setBecomeHostModalOpen(true)} />
           </div>
 
-          {/* CENTER: Tabs (absolute so they are truly centered) */}
           <nav className="font-bold pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-4">
              <NavTab
                href="/"
@@ -80,20 +78,19 @@ export default function Navbar({ active = "homes" }: NavbarProps) {
         </div>
       </div>
       
-      {/* Language and Currency Modal */}
       <UnifiedLanguageCurrencyModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onSelectLanguage={(lang) => {
-          // Map language codes to our context format
+          
           const langCode = lang.code === 'en-US' ? 'en' : 'bn';
           setLanguage(langCode);
           setModalOpen(false);
-          // Reload page to apply language changes
+          
           window.location.reload();
         }}
         onSelectCurrency={(currency) => {
-          // Handle currency selection if needed
+          
           console.log('Selected currency:', currency);
         }}
         selectedLanguage={{
@@ -110,7 +107,7 @@ export default function Navbar({ active = "homes" }: NavbarProps) {
         }}
       />
       
-      {/* Become Host Modal */}
+     
       <BecomeHostModal
         isOpen={becomeHostModalOpen}
         onClose={() => setBecomeHostModalOpen(false)}
@@ -119,7 +116,6 @@ export default function Navbar({ active = "homes" }: NavbarProps) {
   );
 }
 
-/* Globe Button */
 function GlobeButton({ onOpenModal }: { onOpenModal?: () => void }) {
   return (
     <button
@@ -137,7 +133,6 @@ function GlobeButton({ onOpenModal }: { onOpenModal?: () => void }) {
   );
 }
 
-/* Menu Dropdown */
 function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
   const [open, setOpen] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({ top: 0, right: 0 });
@@ -145,7 +140,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
-  // Update button position when dropdown opens
   useEffect(() => {
     if (open && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
@@ -156,7 +150,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
     }
   }, [open]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -203,7 +196,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              right: `${buttonPosition.right}px`
            }}
          >
-           {/* Help Center */}
            <Link
              href="/help"
              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -216,7 +208,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              <span className="font-medium">{t('nav.helpCenter')}</span>
            </Link>
 
-           {/* Become a host */}
            <button
              onClick={onOpenBecomeHost}
              className="flex items-center justify-between px-4 py-4 hover:bg-gray-50 text-gray-950 border-b border-gray-200 w-full text-left"
@@ -236,7 +227,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              </div>
            </button>
 
-           {/* Refer a Host */}
            <Link
              href="/refer"
              className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -244,7 +234,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              {t('nav.referHost')}
            </Link>
 
-           {/* Find a co-host */}
            <Link
              href="/cohost"
              className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -252,7 +241,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              {t('nav.findCohost')}
            </Link>
 
-           {/* Gift cards */}
            <Link
              href="/gift-cards"
              className="block px-4 py-3 hover:bg-gray-50 text-gray-950 border-b border-gray-200"
@@ -260,7 +248,6 @@ function MenuDropdown({ onOpenBecomeHost }: { onOpenBecomeHost: () => void }) {
              {t('nav.giftCards')}
            </Link>
 
-           {/* Log in or sign up */}
            <Link
              href="/login"
              className="block px-4 py-3 hover:bg-gray-50 text-gray-950"

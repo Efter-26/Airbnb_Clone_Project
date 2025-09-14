@@ -7,7 +7,6 @@ export default function DateRangeModal({
   onClose,
   checkIn,
   checkOut,
-  activeField,
   onPick,
   dateMode = "dates",
   onDateModeChange,
@@ -27,7 +26,6 @@ export default function DateRangeModal({
   const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
   const [monthDuration, setMonthDuration] = useState(3);
 
-  // Sync with parent dateMode
   useEffect(() => {
     setSelectedMode(dateMode);
   }, [dateMode]);
@@ -37,7 +35,6 @@ export default function DateRangeModal({
     onDateModeChange?.(mode);
   };
 
-  // close on outside click
   useEffect(() => {
     if (!open) return;
     const onDown = (e: MouseEvent) => {
@@ -48,7 +45,6 @@ export default function DateRangeModal({
     return () => document.removeEventListener("mousedown", onDown);
   }, [open, onClose]);
 
-  // close on ESC
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -56,7 +52,6 @@ export default function DateRangeModal({
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  // which pair of months to show
   const today = new Date();
   const startOfMonth = (d: Date) => new Date(d.getFullYear(), d.getMonth(), 1);
 
@@ -75,7 +70,6 @@ export default function DateRangeModal({
       aria-modal="false"
       className="absolute top-full left-0 right-0 z-50 bg-white border border-gray-200 rounded-2xl shadow-lg p-6"
     >
-      {/* Header with centered segmented control */}
       <div className="flex items-center justify-center mb-6">
         <div className="inline-flex rounded-full bg-gray-100 p-1">
           {[
@@ -106,10 +100,8 @@ export default function DateRangeModal({
         </button>
       </div>
 
-      {/* Content based on selected mode */}
       {selectedMode === "dates" && (
         <>
-          {/* Two months side by side */}
           <div className="grid grid-cols-2 gap-8">
             {months.map((m, i) => (
               <MonthView
@@ -126,7 +118,6 @@ export default function DateRangeModal({
             ))}
           </div>
 
-          {/* Footer with quick chips */}
           <div className="flex items-center justify-center mt-6 pt-6 border-t">
             <div className="flex gap-2">
               {["Exact dates", "+ 1 day", "+ 2 days", "+ 7 days"].map(
@@ -167,12 +158,9 @@ export default function DateRangeModal({
   );
 }
 
-/* helpers */
-
 function MonthsView({ 
   monthDuration, 
-  setMonthDuration, 
-  onClose 
+  setMonthDuration 
 }: { 
   monthDuration: number; 
   setMonthDuration: (duration: number) => void; 
@@ -186,13 +174,10 @@ function MonthsView({
     <div className="text-center">
       <h2 className="text-2xl font-semibold text-gray-900 mb-8">When&apos;s your trip?</h2>
       
-      {/* Circular slider */}
       <div className="relative w-64 h-64 mx-auto mb-8">
         <div className="relative w-full h-full">
-          {/* Background circle */}
           <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
           
-          {/* Progress circle */}
           <div 
             className="absolute inset-0 rounded-full border-4 border-red-500"
             style={{
@@ -200,7 +185,6 @@ function MonthsView({
             }}
           ></div>
           
-          {/* Center content */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <div className="text-3xl font-bold text-gray-900">{monthDuration}</div>
@@ -208,7 +192,6 @@ function MonthsView({
             </div>
           </div>
           
-          {/* Slider handle */}
           <div 
             className="absolute w-6 h-6 bg-white rounded-full shadow-lg border-2 border-red-500 transform -translate-x-1/2 -translate-y-1/2"
             style={{
@@ -218,7 +201,6 @@ function MonthsView({
           ></div>
         </div>
         
-        {/* Hidden input for accessibility */}
         <input
           type="range"
           min="1"
@@ -229,7 +211,6 @@ function MonthsView({
         />
       </div>
       
-      {/* Selected range display */}
       <div className="text-lg text-gray-900 mb-8">
         Oct 1, 2025 to Jan 1, 2026
       </div>
@@ -241,8 +222,7 @@ function FlexibleView({
   selectedDuration, 
   setSelectedDuration, 
   selectedMonths, 
-  setSelectedMonths, 
-  onClose 
+  setSelectedMonths 
 }: { 
   selectedDuration: "weekend" | "week" | "month"; 
   setSelectedDuration: (duration: "weekend" | "week" | "month") => void; 
@@ -270,7 +250,6 @@ function FlexibleView({
 
   return (
     <div>
-      {/* Duration selection - centered */}
       <div className="mb-8 text-center">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">How long would you like to stay?</h3>
         <div className="flex gap-2 justify-center">
@@ -290,7 +269,6 @@ function FlexibleView({
         </div>
       </div>
 
-      {/* Month selection */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Go anytime</h3>
         <div className="flex gap-3 overflow-x-auto pb-2">
